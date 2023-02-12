@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      Just Dance - Banzai Nihon
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/pt_BR/dlc/switch-dlc/just-dance-dlc/rom-bundle/just-dance-2023-edition/image"></ion-img>
+    <ion-card-content>
+      <ion-card-title class="ion-margin">
+        Bem-vindo(a) ao Banzai Nihon!<br/>
+      </ion-card-title>
+      <p class="welcome-text">
+        Este é o sistema de lista para jogar Just Dance! Você pode inserir o seu nome na lista de forma autônoma e
+        observar a sua posição para não perder a sua vez de jogar!
+      </p>
+      <ion-list>
+        <ion-item>
+          <ion-icon color="danger" slot="start" name="time-outline"></ion-icon>
+          Insira seu nome na lista                   
+        </ion-item>
+        <ion-item>
+          <ion-icon color="warning" slot="start" name="list-outline"></ion-icon>          
+          Confira sua posição na lista
+        </ion-item>
+        <ion-item>
+          <ion-icon color="success" slot="start" name="person-circle-outline"></ion-icon>
+          Aguarde a sua vez
+        </ion-item>
+        <ion-item>
+          <ion-icon color="tertiary" slot="start" name="sparkles-outline"></ion-icon>
+          Entre nessa e Just Dance!
+        </ion-item>
+          <ion-button (click)="entrar()" expand="full" class="ion-margin">ENTRAR!</ion-button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

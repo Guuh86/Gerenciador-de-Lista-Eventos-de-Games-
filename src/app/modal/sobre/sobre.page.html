@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Sobre</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-img src="https://blog.inteligov.com.br/wp-content/uploads/2020/04/seguranca-da-informacao-1013x675.jpeg"></ion-img>
+    <ion-item-divider>
+      SOBRE A APLICAÇÃO
+    </ion-item-divider>
+    <ion-card-content>
+      <span>
+        Esta aplicação "Lista de Jogadores" foi desenvolvida através de estudos autônomos.<br/>
+        A finalidade é auxiliar e agilizar eventos com um rápido controle de fila para os que
+        os usuários consigam desfrutar da atração do evento de forma organizada.
+      </span>
+    </ion-card-content>
+    <ion-item-divider>
+      CONTATO
+    </ion-item-divider>
+    <ion-card-content>
+      <span>Esta aplicação foi desenvolvida por: Luiz Gustavo</span>
+      <ion-list>
+        <ion-item button href="https://www.instagram.com/_guuh86">
+          <ion-icon slot="start" name="logo-instagram" color="tertiary"></ion-icon>
+          <p>Instagram | @_guuh86</p>
+        </ion-item>
+        <ion-item button href="https://www.twitter.com/guuh86"> 
+          <ion-icon slot="start" name="logo-twitter" color="primary"></ion-icon>
+          <p>Twitter | @guuh86</p>
+        </ion-item>
+        <ion-item button href="https://www.github.com/guuh86">
+          <ion-icon slot="start" name="logo-github" color="black"></ion-icon>
+          <p>Github | Guuh86</p>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+    <ion-item-divider>
+      ID DE USUÁRIO
+    </ion-item-divider>
+    <ion-card-content>
+      <ion-item>
+        <ion-icon name="key" slot="start"></ion-icon>
+        <p>{{id}}</p>
+      </ion-item>
+    </ion-card-content>
+    <ion-button expand="full" color="danger" (click)="exitAndDelete()">SAIR DO SISTEMA</ion-button>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Editar Jogador</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-divider>
+    NOME DO JOGADOR
+  </ion-item-divider>
+  <ion-item>
+    <ion-icon name="person" slot="start"></ion-icon>
+    <ion-input type="text" [(ngModel)]="name" [value]="data.nome"></ion-input>
+  </ion-item>
+  <ion-item-divider>
+    PONTUAÇÃO
+  </ion-item-divider>
+  <ion-item>
+    <ion-icon name="trophy" slot="start"></ion-icon>
+    <ion-input type="text" [(ngModel)]="score" [value]="data.score"></ion-input>
+  </ion-item>
+  <ion-button expand="full" color="success" (click)="updatePlayer()">SALVAR</ion-button>
+  <ion-button expand="full" color="danger" (click)="closeModal()">CANCELAR</ion-button>
+</ion-content>

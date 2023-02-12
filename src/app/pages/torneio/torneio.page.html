@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Torneio - Just Dance</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item-divider>
+      ETAPA DO TORNEIO
+    </ion-item-divider>
+    <ion-card-content>
+      <ion-item>
+        <p class="ion-text-center" *ngIf="type.value == 'CLASSIFICATÓRIA'">
+          Fique entre as 8 melhores pontuações <br/>
+          para se classificar para a final do campeonato!
+        </p>
+        <p class="ion-text-center" *ngIf="type.value == 'FINAL'">
+          Dê tudo de si para ficar no TOP #3 e levar a premiação para casa!
+        </p>
+      </ion-item>
+      <ion-item *ngIf="type.value == 'CLASSIFICATÓRIA'" class="ion-margin-top">
+        <ion-icon color="lime" name="trophy" slot="start"></ion-icon>
+        <span style="color: silver">Etapa atual:</span> <span class="type">{{type.value}}</span>
+      </ion-item>
+      <ion-item *ngIf="type.value == 'FINAL'">
+        <ion-icon color="danger" name="trophy" slot="start"></ion-icon>
+        <span style="color: silver">Etapa atual:</span> <span class="type2">{{type.value}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-icon color="primary" name="person" slot="start"></ion-icon>
+        <span style="color: silver">Quantidade de Jogadores:</span> <ion-badge slot="end">{{qnt}}</ion-badge>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-img src="https://pbs.twimg.com/media/DbO-_a9VAAQRytG.jpg"></ion-img>
+    <ion-item-divider>
+      TABELA DE LIDERANÇA
+    </ion-item-divider>
+    <ion-card-content>
+      <p class="ion-text-center" *ngIf="qnt == 0 && stats.value == 'NÃO'">
+        Não há jogadores competindo :/<br/>
+        Entre na pista de dança e registre e a sua pontuação para ter a chance de 
+        ir para a final e ganhar prêmios!!
+      </p>
+      <p class="ion-text-center" *ngIf="stats.value == 'SIM'">
+        Estamos atualizando a tabela com os finalistas! Aguarde...          
+      </p>
+      <div *ngIf="stats.value == 'NÃO'">
+        <ion-list *ngFor="let x of list; let i = index">
+          <ion-item *ngIf="i != 0">
+            <ion-badge slot="start" *ngIf="i == 1" color="gold">#{{i}}</ion-badge>
+            <ion-badge slot="start" *ngIf="i == 2" color="silver">#{{i}}</ion-badge>
+            <ion-badge slot="start" *ngIf="i == 3" color="copper">#{{i}}</ion-badge>
+            <ion-badge slot="start" *ngIf="i > 3">#{{i}}</ion-badge>
+            <ion-label>{{x.nome}}</ion-label>
+            <ion-badge>{{x.score}}</ion-badge>   
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

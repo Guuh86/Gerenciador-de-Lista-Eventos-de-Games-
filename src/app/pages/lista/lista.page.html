@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Lista de Jogadores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="show">
+    <ion-card-content>
+      <ion-item>
+        <ion-icon slot="start" name="warning" color="warning"></ion-icon>
+        <span>VOCÊ JÁ ESTÁ NA LISTA! <br/> AGUARDE SUA VEZ DE JOGAR PARA PODER ADICIONAR SEU NOME NOVAMENTE.</span>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="!show">
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-input type="text" placeholder="Insira seu nome aqui..." [(ngModel)]="name"></ion-input>
+        <ion-button slot="end" color="success" (click)="addOnList()">
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/pt_BR/dlc/switch-dlc/just-dance-dlc/rom-bundle/just-dance-2023-edition/image"></ion-img>
+    <ion-card-content>
+      <div class="ion-text-center">
+        <ion-label *ngIf="total == 0">Não há ninguém na lista...</ion-label>
+      </div>
+      <ion-list *ngFor="let x of list; let i = index">
+        <ion-item>
+          <ion-badge *ngIf="i != 0" slot="start" [color]="x.cor">#{{i}}</ion-badge>
+          <ion-label>{{x.nome}}</ion-label>
+          <ion-badge slot="start" *ngIf="i == 0">PRÓXIMO</ion-badge>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
