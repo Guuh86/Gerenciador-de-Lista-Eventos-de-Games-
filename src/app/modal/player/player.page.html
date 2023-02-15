@@ -10,15 +10,25 @@
   </ion-item-divider>
   <ion-item>
     <ion-icon name="person" slot="start"></ion-icon>
-    <ion-input type="text" [(ngModel)]="name" [value]="data.nome"></ion-input>
+    <ion-input type="text" [(ngModel)]="name" [value]="data?.nome"></ion-input>
   </ion-item>
   <ion-item-divider>
     PONTUAÇÃO
   </ion-item-divider>
   <ion-item>
     <ion-icon name="trophy" slot="start"></ion-icon>
-    <ion-input type="text" [(ngModel)]="score" [value]="data.score"></ion-input>
+    <ion-input type="text" [(ngModel)]="score" [value]="data?.score"></ion-input>
   </ion-item>
-  <ion-button expand="full" color="success" (click)="updatePlayer()">SALVAR</ion-button>
-  <ion-button expand="full" color="danger" (click)="closeModal()">CANCELAR</ion-button>
+    <ion-button (click)="updatePlayer()" expand="full" color="success">
+      <ion-icon name="checkmark"></ion-icon>
+      CONFIRMAR
+    </ion-button>
+    <ion-button (click)="deletePlayer()" expand="full" color="danger">
+      <ion-icon name="trash"></ion-icon>
+      REMOVER
+    </ion-button>
+    <ion-button (click)="closeModal()" expand="full" color="primary">
+      <ion-icon name="close"></ion-icon>
+      CANCELAR
+    </ion-button>
 </ion-content>

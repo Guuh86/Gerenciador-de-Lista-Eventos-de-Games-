@@ -13,16 +13,31 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
-  <ion-card *ngIf="!show">
+  <ion-card *ngIf="closed?.value">
     <ion-card-content>
-      <ion-item lines="none">
-        <ion-input type="text" placeholder="Insira seu nome aqui..." [(ngModel)]="name"></ion-input>
-        <ion-button slot="end" color="success" (click)="addOnList()">
-          <ion-icon name="add"></ion-icon>
-        </ion-button>
+      <ion-item>
+        <ion-icon slot="start" name="megaphone" color="warning"></ion-icon>
+        <span>
+          LISTA ENCERRADA!<br/>
+          O FREE-PLAY IRÁ ENCERRAR EM BREVE! <br/> 
+          FECHAMOS A LISTA PARA PODER DAR A CHANCE DE TODOS QUE ESTÃO NELA CONSIGAM JOGAR.<br/>
+          OBRIGADO POR PARTICIPAR!
+        </span>
       </ion-item>
     </ion-card-content>
   </ion-card>
+  <div *ngIf="!closed?.value">
+    <ion-card *ngIf="!show">
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-input type="text" placeholder="Insira seu nome aqui..." [(ngModel)]="name"></ion-input>
+          <ion-button slot="end" color="success" (click)="addOnList()">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
   <ion-card>
     <ion-img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/pt_BR/dlc/switch-dlc/just-dance-dlc/rom-bundle/just-dance-2023-edition/image"></ion-img>
     <ion-card-content>

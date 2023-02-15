@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { CrudService } from 'src/app/services/crud.service';
-import { AlertController, LoadingController, ModalController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,7 +17,6 @@ export class SobrePage implements OnInit {
   constructor(
     private auth: AuthService,
     private crud: CrudService,
-    private modal: ModalController,
     private alert: AlertController,
     private loading: LoadingController,
     private toast: ToastController,
@@ -25,10 +24,21 @@ export class SobrePage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.pickID();    
+  }
+
+  async pickID(){
     this.id = '';
-    this.auth.getUser().subscribe(user => {
-      this.id = user?.uid;
-    })
+    await this.showLoading('Carregando. Aguarde...');
+    try {
+      await this.auth.getUser().subscribe(user => {
+        this.id = user?.uid;
+      });
+    } catch (error) {
+      this.showToast(error);
+    } finally {
+      this.loader.dismiss();
+    }
   }
 
   async exitAndDelete(){
@@ -55,16 +65,14 @@ export class SobrePage implements OnInit {
   async shutdown(){
     await this.showLoading('Saindo. Aguarde...')
     try {
-      this.auth.getUser().subscribe(user => {
+      await this.auth.getUser().subscribe(user => {
         this.crud.delete(user?.uid);
       });
-      this.auth.logOut();
     } catch (error) {
       this.showToast(error);              
     } finally {
+      this.auth.logOut();
       this.loader.dismiss();
-      this.modal.dismiss();
-      this.router.navigate(['/home']);
     }
   }
 

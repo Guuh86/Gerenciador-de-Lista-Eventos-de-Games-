@@ -6,6 +6,7 @@ import { Jogador } from 'src/app/interfaces/jogador';
 import { SobrePage } from 'src/app/modal/sobre/sobre.page';
 import { AuthService } from 'src/app/services/auth.service';
 import { CrudService } from 'src/app/services/crud.service';
+import { TournamentService } from 'src/app/services/tournament.service';
 
 @Component({
   selector: 'app-lista',
@@ -21,6 +22,7 @@ export class ListaPage implements OnInit {
   show !: boolean;
   uid: any;
   total: number = 0;
+  closed: any;
 
   colors = [
     'primary',
@@ -41,11 +43,16 @@ export class ListaPage implements OnInit {
     private toast: ToastController,
     private loading: LoadingController,
     private firestore: AngularFirestore,
-    private modal: ModalController
+    private modal: ModalController,
+    private tnt: TournamentService
   ) { }
 
   async ngOnInit() {
     await this.showLoading('Carregando. Aguarde...');
+
+    await this.tnt.getClosed().subscribe(data => {
+      this.closed = data;
+    });
 
     await this.auth.getUser().subscribe(user => {
       this.uid = user?.uid
@@ -79,7 +86,7 @@ export class ListaPage implements OnInit {
             this.show = false;
           }
         });
-      });
+      });      
     } catch (error) {
       this.showToast(error);
     } finally {

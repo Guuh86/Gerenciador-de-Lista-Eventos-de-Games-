@@ -38,6 +38,14 @@ export class TournamentService {
     return this.afs.doc('Stats' + '/' + 'statsType').update(value);    
   }
 
+  updateClosed(value: any){
+    return this.afs.doc('Closed' + '/' + 'statsClosed').update(value);    
+  }
+
+  getClosed(){
+    return this.afs.collection('Closed').doc('statsClosed').valueChanges();    
+  }
+
   getStatsType(){
     return this.afs.collection('Stats').doc('statsType').valueChanges();
   }
@@ -45,7 +53,5 @@ export class TournamentService {
   getStatsMaintance(){
     return this.afs.collection('Stats').doc('statsMaintance').valueChanges();
   }
-
-
 
 }

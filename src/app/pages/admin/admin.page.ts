@@ -21,6 +21,7 @@ export class AdminPage implements OnInit {
 
   type: any;
   maintance: any;
+  closed: any;
 
   statsM: any
   typeT: any;
@@ -46,7 +47,7 @@ export class AdminPage implements OnInit {
     this.score = 0;
     await this.showLoading('Carregando...');
     try {
-      this.firestore.collection('Jogadores', ref => ref.orderBy('timestamp', 'asc')).snapshotChanges().subscribe(data => {
+      await this.firestore.collection('Jogadores', ref => ref.orderBy('timestamp', 'asc')).snapshotChanges().subscribe(data => {
         this.list = data.map(e => {
           return {
             id: e.payload.doc.id,
@@ -56,20 +57,34 @@ export class AdminPage implements OnInit {
         this.total = this.list.length;
       });
       this.type = '';
-      this.tnt.getStatsType().subscribe(data => {
+      await this.tnt.getStatsType().subscribe(data => {
         this.type = data;
         console.log(this.type);
       });
       this.statsM = '';
-      this.tnt.getStatsMaintance().subscribe(data => {
+      await this.tnt.getStatsMaintance().subscribe(data => {
         this.statsM = data;
         console.log(this.statsM);
       });
+      this.closed = false;
+      await this.tnt.getClosed().subscribe(data => {
+        this.closed = data;
+        console.log(this.closed);
+      })
       this.getTable();
     } catch (error) {
       this.showToast(error);
     } finally {
       this.loader.dismiss();
+    }
+  }
+
+  closeList(event: any){
+    const a = event.detail.checked;
+    if (a == true){
+      this.tnt.updateClosed({value: true});
+    } else {
+      this.tnt.updateClosed({value: false});
     }
   }
 
@@ -109,10 +124,6 @@ export class AdminPage implements OnInit {
       }
     )
     this.name = '';
-  }
-
-  deletePlayer(id: any) {
-    this.tnt.remove(id);
   }
 
   changeList() {

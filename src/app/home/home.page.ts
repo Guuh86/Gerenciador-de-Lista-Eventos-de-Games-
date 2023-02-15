@@ -13,24 +13,16 @@ export class HomePage implements OnInit{
   loader: any;
 
   constructor(
-    private auth: AuthService,
-    private router: Router,
+    private auth: AuthService,                                     
     private loading: LoadingController,
     private toast: ToastController
   ) {}
 
   ngOnInit(): void {
-    this.auth.getUser().subscribe(user => {
-      if (user){
-        this.router.navigate(['/lista']);
-      } else {
-        this.router.navigate(['/home']);
-      }
-    })
   }
 
   async entrar(){
-    await this.showLoading('Entrando na pista de dança! Aguarde...')
+    await this.showLoading('Entrando na pista de dança! Aguarde...');
     try {
       await this.auth.signIn();
     } catch (error) {

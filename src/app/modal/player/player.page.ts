@@ -47,4 +47,11 @@ export class PlayerPage implements OnInit {
     })
   }
 
+  deletePlayer(){
+    this.tnt.remove(this.uid).then(res => {
+      this.modal.dismiss();
+      this.ngOnInit();
+    })
+  }
+
 }

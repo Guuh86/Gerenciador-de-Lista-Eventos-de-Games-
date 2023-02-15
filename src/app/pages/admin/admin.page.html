@@ -17,10 +17,22 @@
 
   <div [ngSwitch]="value">
     <ion-card *ngSwitchCase="'list'">
+      <ion-item-divider>
+        CONFIGURAÇÕES DA LISTA
+      </ion-item-divider>
       <ion-card-content>
-        <ion-item-divider>
-          QUANTIDADE DE JOGADORES NA LISTA
-        </ion-item-divider>
+        <ion-item>
+          <ion-icon slot="start" name="list"></ion-icon>
+          FECHAR LISTA
+          <ion-toggle slot="end" (ionChange)="closeList($event)" [enableOnOffLabels]="true"></ion-toggle>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    <ion-card *ngSwitchCase="'list'">
+      <ion-item-divider>
+        QUANTIDADE DE JOGADORES NA LISTA
+      </ion-item-divider>
+      <ion-card-content>
         <ion-item>
           <ion-icon name="people" slot="start"></ion-icon>
           Total de Jogadores: {{total}}
@@ -28,7 +40,8 @@
       </ion-card-content>
     </ion-card>
     <ion-card *ngSwitchCase="'list'">
-      <ion-img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/pt_BR/dlc/switch-dlc/just-dance-dlc/rom-bundle/just-dance-2023-edition/image"></ion-img>
+      <ion-img
+        src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/pt_BR/dlc/switch-dlc/just-dance-dlc/rom-bundle/just-dance-2023-edition/image"></ion-img>
       <ion-card-content>
         <div class="ion-text-center">
           <ion-label *ngIf="total == 0">Não há ninguém na lista...</ion-label>
@@ -37,7 +50,7 @@
           <ion-item>
             <ion-badge [color]="x.cor" *ngIf="i != 0" slot="start">#{{i}}</ion-badge>
             <ion-badge *ngIf="i == 0" slot="start">JOGANDO</ion-badge>
-            <ion-label>{{x.nome}}</ion-label>
+            <ion-label>{{x?.nome}}</ion-label>
             <ion-buttons slot="end">
               <ion-button (click)="deleteUser(x.uid)">
                 <ion-icon color="danger" name="trash"></ion-icon>
@@ -95,13 +108,8 @@
             <ion-badge slot="start" *ngIf="i == 2" color="silver">#{{i}}</ion-badge>
             <ion-badge slot="start" *ngIf="i == 3" color="copper">#{{i}}</ion-badge>
             <ion-badge slot="start" *ngIf="i > 3">#{{i}}</ion-badge>
-            <ion-label>{{x.nome}}</ion-label>
-            <ion-badge>{{x.score}}</ion-badge>
-            <ion-buttons slot="end">
-              <ion-button (click)="deletePlayer(x.id)">
-                <ion-icon name="trash" color="danger"></ion-icon>
-              </ion-button>
-            </ion-buttons>
+            <ion-label>{{x?.nome}}</ion-label>
+            <ion-badge>{{x?.score}}</ion-badge>
           </ion-item>
         </ion-list>
       </ion-card-content>
